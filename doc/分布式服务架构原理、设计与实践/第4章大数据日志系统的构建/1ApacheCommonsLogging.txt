@@ -1,0 +1,6 @@
+Apache Commons Logging只提供了日志接口，具体实现则在运行时根据配置动态查找日志的实现框架，它的出现避免了和具体的日志实现框架直接耦合。
+在日常开发中，开发者可以选择第三方日志组件搭配使用，例如Log4j。
+
+传统的系统基本上使用Commons Logging和Apache Log4j的组合，Commons Logging使用门面设计模式实现，门面后面可以转接Apache Log4j等其他
+日志实现框架，后来，Apache Log4j的作者看到这套实现在一些细节上存在缺陷，于是又开发了Slf4j和Logback，但是他们并不属于Apache，Slf4j用来
+取代Commons Logging，Logback用于取代Log4j。

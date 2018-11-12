@@ -1,0 +1,16 @@
+Logging：日志对象，负罪捕捉日志记录的信息
+
+Appender：日志输出目的地，负责把格式化的日志信息输出到指定的地方，可以是控制台、磁盘文件等
+每个日志对象都有一个对应的Appender对象，每个Appender对象代表一个日志输出目的地，其中，有以下Appender对象可供选择：
+	1、ConsoleAppender：把日志输出到控制台
+	2、FileAppender：把日志输出到磁盘文件
+	3、DailyRollingFileAppender：每天产生一个日志磁盘文件，日志文件按天滚动生成
+	4、RollingFileAppender：日志磁盘文件的大小达到指定尺寸时会产生一个新的文件，日志文件按照日志大小滚动生成
+
+Layout：对日志进行格式化，负责生成不同格式的日志信息
+每个Appender对象对应一个Layout对象，Appender对象负责把日志信息输出到指定的文件中，Layout对象则负责把日志信息按照格式化的要求展示出来，其中，
+Log4j有以下Layout可供选择：
+	1、HTMLLayout：以HTML表格形式布局展示
+	2、PatternLayout：自定义指定的格式展示
+	3、SimpleLayout：只包含日志信息的级别和信息字符串
+	4、TTCCLayout：包含日志产生的时间、线程、类别等信息
