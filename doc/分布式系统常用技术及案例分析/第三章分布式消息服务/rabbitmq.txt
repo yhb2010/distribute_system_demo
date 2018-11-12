@@ -1,0 +1,40 @@
+一、安装：
+	1、安装erlang：下载www.erlang.org/downloads，配置环境变量：ERLANG_HOME值为安装路径，Path值为%ERLANG_HOME%\bin。
+	设置环境变量后，不用重启的办法：在cmd命令行输入set ERLANG_HOME=任意值即可。
+	在cmd命令输入erl，输出Eshell V版本号即可说明安装成功。
+
+	配置RabbitMQ
+	安装完成后，需要完成一些配置才能使用RabbitMQ，可以直接用cmd到RabbitMQ的安装目录下的sbin目录通过命令配置，也可以直接在开始菜单中直接找到RabbitMQ Command Prompt (sbin dir)运行直接到达RabbitMQ的安装目录的sbin，为了方便，我们先启用管理插件,执行命令
+	rabbitmq-plugins.bat enable rabbitmq_management
+	即可， 注意，这是在Windows下面，如果是Linux则没有bat后缀 然后我们添加一个用户，因为在外网环境没有用户的情况下是不能连接成功的，执行添加用户命令
+	rabbitmqctl.bat add_user springboot password
+	springboot是用户名，password是密码
+	然后为了方便演示，我们给springboot赋予管理员权限，方便登录管理页面
+	rabbitmqctl.bat set_user_tags springboot administrator
+	给账号赋予虚拟主机权限
+	rabbitmqctl.bat set_permissions -p / springboot  .* .* .*
+	然后启动RabbitMQ服务 访问 RabbitMQ管理页面 http://localhost:15672 即可看见登录页面，如果没有创建用户则可以用guest，guest登录，如果有创建用户则用创建的用户登录
+
+	rabbitmq启动方式有2种
+	1、以应用方式启动
+	rabbitmq-server -detached 后台启动
+	Rabbitmq-server 直接启动，如果你关闭窗口或者需要在改窗口使用其他命令时应用就会停止
+ 	关闭:rabbitmqctl stop
+
+	2、以服务方式启动（安装完之后在任务管理器中服务一栏能看到RabbtiMq）
+	rabbitmq-service install 安装服务
+	rabbitmq-service start 开始服务
+	Rabbitmq-service stop  停止服务
+	Rabbitmq-service enable 使服务有效
+	Rabbitmq-service disable 使服务无效
+	rabbitmq-service help 帮助
+	当rabbitmq-service install之后默认服务是enable的，如果这时设置服务为disable的话，rabbitmq-service start就会报错。
+	当rabbitmq-service start正常启动服务之后，使用disable是没有效果的
+	关闭:rabbitmqctl stop
+
+	3、Rabbitmq管理插件启动
+	rabbitmq-plugins enable rabbitmq_management 启动
+	rabbitmq-plugins disable rabbitmq_management 关闭
+	4、Rabbitmq节点管理方式
+	Rabbitmqctl status查看broker状态
+	Rabbitmqctl stop停用broker
